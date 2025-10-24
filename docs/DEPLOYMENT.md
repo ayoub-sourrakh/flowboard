@@ -1,10 +1,18 @@
-# 🚀 Guide de Déploiement - Render.com
+# 🚀 Guide de Déploiement - Render.com (Docker)
 
 ## Prérequis
 
 - Compte Render.com (gratuit)
 - Repository GitHub connecté
 - `RAILS_MASTER_KEY` (dans `config/master.key`)
+
+## 🐳 Pourquoi Docker sur Render ?
+
+- ✅ **Environnement identique** dev/prod
+- ✅ **Build reproductible** avec cache Docker
+- ✅ **Portable** - facile de migrer ailleurs
+- ✅ **Render gère** SSL, monitoring, backups
+- ✅ **Dockerfile déjà prêt** dans le projet
 
 ## 📋 Étapes de Déploiement
 

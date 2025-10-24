@@ -1,17 +1,12 @@
 services:
-  # Web Service - Rails Application
+  # Web Service - Rails Application (Docker)
   - type: web
     name: flowboard
-    runtime: ruby
+    runtime: docker
     plan: free
-    buildCommand: |
-      bundle install
-      npm install
-      npm run build
-      npm run build:css
-      bundle exec rails assets:precompile
-      bundle exec rails db:migrate
-    startCommand: bundle exec puma -C config/puma.rb
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    preDeployCommand: bundle exec rails db:migrate
     envVars:
       - key: RAILS_ENV
         value: production
@@ -27,13 +22,14 @@ services:
           name: flowboard-redis
           property: connectionString
 
-  # Background Worker - Sidekiq
+  # Background Worker - Sidekiq (Docker)
   - type: worker
     name: flowboard-sidekiq
-    runtime: ruby
+    runtime: docker
     plan: free
-    buildCommand: bundle install
-    startCommand: bundle exec sidekiq
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: bundle exec sidekiq
     envVars:
       - key: RAILS_ENV
         value: production

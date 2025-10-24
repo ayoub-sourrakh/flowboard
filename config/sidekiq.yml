@@ -1,0 +1,19 @@
+---
+:concurrency: 5
+:max_retries: 3
+
+# Queues avec priorité
+:queues:
+  - [critical, 7]
+  - [default, 5]
+  - [mailers, 3]
+  - [low, 1]
+
+production:
+  :concurrency: 10
+
+development:
+  :concurrency: 2
+
+test:
+  :concurrency: 1

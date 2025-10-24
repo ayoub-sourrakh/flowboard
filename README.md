@@ -5,12 +5,16 @@
 
 Mini SaaS de gestion de projets et de tâches construit avec Rails 8.
 
-## 📋 Stack Technique
+## 🛠️ Stack Technique
 
-- **Backend:** Ruby 3.3.4, Rails 8.0.3
-- **Database:** PostgreSQL 16
-- **Cache/Jobs:** Redis 7, Sidekiq 7
-- **Frontend:** Hotwire (Turbo + Stimulus), TailwindCSS v3, esbuild
+- **Framework:** Ruby on Rails 8.0.3
+- **Langage:** Ruby 3.3.4
+- **Base de données:** PostgreSQL 16
+- **Cache & Jobs:** Solid Cache + Solid Queue (PostgreSQL-backed)
+- **WebSockets:** Solid Cable
+- **Frontend:** Hotwire (Turbo + Stimulus) + TailwindCSS v3
+- **Build:** esbuild + TailwindCSS CLI
+- **Node.js:** v20.18.0 LTS
 - **Containerisation:** Docker & Docker Compose
 - **CI/CD:** GitHub Actions
 - **Déploiement:** Render.com
@@ -20,7 +24,7 @@ Mini SaaS de gestion de projets et de tâches construit avec Rails 8.
 ### Prérequis
 
 - Ruby 3.3.4
-- Node.js 14+ (recommandé: 20+)
+- Node.js 20+ (LTS)
 - Docker & Docker Compose
 - Git
 
@@ -38,7 +42,7 @@ npm install
 # 3. Copier les variables d'environnement
 cp .env.example .env
 
-# 4. Démarrer PostgreSQL et Redis avec Docker
+# 4. Démarrer PostgreSQL avec Docker
 docker-compose up -d
 
 # 5. Créer et migrer la base de données

@@ -24,7 +24,7 @@ module Flowboard
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Active Job configuration - Use Sidekiq as the queue adapter
-    config.active_job.queue_adapter = :sidekiq
+    # Active Job configuration - Use Solid Queue (PostgreSQL-backed)
+    config.active_job.queue_adapter = :solid_queue
   end
 end

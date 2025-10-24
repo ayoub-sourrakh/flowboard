@@ -35,42 +35,25 @@
 - User: `flowboard`
 - Plan: Free
 
-**2. Redis**
-- New + → Redis
-- Name: `flowboard-redis`
-- Plan: Free
-
-**3. Web Service**
+**2. Web Service**
 - New + → Web Service
 - Repository: `flowboard`
 - Name: `flowboard`
-- Runtime: Ruby
-- Build Command:
-  ```bash
-  bundle install && npm install && npm run build && npm run build:css && bundle exec rails assets:precompile && bundle exec rails db:migrate
+- Runtime: Docker
+- Dockerfile Path: `./Dockerfile`
   ```
-- Start Command:
-  ```bash
-  bundle exec puma -C config/puma.rb
-  ```
-
-**4. Sidekiq Worker**
-- New + → Background Worker
-- Repository: `flowboard`
-- Name: `flowboard-sidekiq`
-- Build Command: `bundle install`
-- Start Command: `bundle exec sidekiq`
 
 ### 2. Configurer les Variables d'Environnement
 
-Pour chaque service (Web + Worker), ajoutez :
+Pour le Web Service, ajoutez :
 
 ```
 RAILS_ENV=production
 RAILS_MASTER_KEY=<votre_master_key>
 DATABASE_URL=<auto_configuré_par_render>
-REDIS_URL=<auto_configuré_par_render>
 ```
+
+**Note :** Pas besoin de Redis ! L'application utilise **Solid Queue** (PostgreSQL-backed) pour les jobs en arrière-plan.
 
 **Obtenir RAILS_MASTER_KEY :**
 ```bash

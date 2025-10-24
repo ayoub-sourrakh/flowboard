@@ -15,42 +15,10 @@ services:
         fromDatabase:
           name: flowboard-db
           property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: flowboard-redis
-          property: connectionString
-
-  # Background Worker - Sidekiq (Docker)
-  - type: worker
-    name: flowboard-sidekiq
-    runtime: docker
-    plan: free
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    dockerCommand: bundle exec sidekiq
-    envVars:
-      - key: RAILS_ENV
-        value: production
-      - key: RAILS_MASTER_KEY
-        sync: false
-      - key: DATABASE_URL
-        fromDatabase:
-          name: flowboard-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: flowboard-redis
-          property: connectionString
 
 databases:
   # PostgreSQL Database
   - name: flowboard-db
     databaseName: flowboard_production
     user: flowboard
-    plan: free
-
-  # Redis Instance
-  - name: flowboard-redis
     plan: free
